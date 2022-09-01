@@ -21,9 +21,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var jsonData: ExchangeRates = []
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text("JSON has\n" + String(jsonData.count) + " prices listed.")
+                .padding()
+                .multilineTextAlignment(.center)
+        }
+        .onAppear(perform: {
+            Task {
+                jsonData = try await NetworkService().fetchSpecificJSON()
+            }
+        })
     }
 }
 
