@@ -15,9 +15,9 @@
 //  ----------------------------------------------------
 
 //  ----------------------------------------------------
-/*  Goal explanation:  (whole app does? … for users)   */
+/*  Goal explanation:  Show current values of cryptocurrencies
+ in a way that is easy to quickly understand. */
 //  ----------------------------------------------------
-
 
 import SwiftUI
 
