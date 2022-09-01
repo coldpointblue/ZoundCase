@@ -44,6 +44,7 @@
 		7210AE5128C1466300140645 /* ZoundCaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZoundCaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7210AE5528C1466300140645 /* ZoundCaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoundCaseUITests.swift; sourceTree = "<group>"; };
 		7210AE5728C1466300140645 /* ZoundCaseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoundCaseUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7210AE6428C147C700140645 /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				7210AE3A28C1466200140645 /* ZoundCaseApp.swift */,
+				7210AE6428C147C700140645 /* README.rtf */,
 				7210AE3C28C1466200140645 /* ContentView.swift */,
 				7210AE3E28C1466300140645 /* Assets.xcassets */,
 				7210AE4028C1466300140645 /* Preview Content */,

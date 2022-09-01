@@ -1,0 +1,349 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red155\green35\blue147;\red255\green255\blue255;
+\red0\green0\blue0;\red196\green26\blue22;\red28\green0\blue207;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\csgenericrgb\c60759\c13753\c57628;\csgenericrgb\c100000\c100000\c100000;
+\csgenericrgb\c0\c0\c0\c85000;\csgenericrgb\c77000\c10200\c8600;\csgenericrgb\c11000\c0\c81000;}
+\margl1440\margr1440\vieww34060\viewh20160\viewkind0
+\deftab560
+\pard\pardeftab560\partightenfactor0
+
+\f0\b\fs36 \cf2 ZoundCase \'97 Hugo Diaz \'97 Thursday, September 1st, 2022.\
+\pard\pardeftab560\partightenfactor0
+
+\f1\b0 \cf2 \
+This README file describes the REQUIREMENTS, SOLUTION and STRATEGY\'85  It details the project GOALS first.\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+\cf2 Project purpose \'97 To display a list of cryptocurrencies for a group of users in the USA & Sweden which can switch shown default price of currencies between USD & SEK.\
+Make the User Experience valuable to the end user.\
+\
+\pard\pardeftab560\partightenfactor0
+
+\f0\b \cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 GOAL:\
+Making it easy-to-understand & interpret the currencies available, in SEK & USD, so that the user can make decisions.\
+\pard\pardeftab560\partightenfactor0
+
+\f0\b \cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 Relevant information to CONSIDER, regarding the app USER\'85\
+	\'85Questions: Who are the users?  What is their motivation?  What do they need to see or do?\
+\
+My interpretation \'97 Price values for currencies are USEFUL to an individual person when one CAN:\
+\
+	Assess their WORTH at the moment\'85\
+		\'85see its CURRENT value in NUMBERS.\
+		\'85COMPARE AMOUNT of currency's CURRENT VALUE to current values of OTHER specific currencies relevant to us.\
+		\'85be aware of TRENDS OVER TIME, when comparing their current value with PREVIOUS values of the same currency.\
+		\'85UNDERSTAND WHAT one can BUY with a fixed amount, to get a sense of SCALE reasonable for assessing what it's WORTH.\
+			(as opposed only a number which might be too abstract of have too small a value to comprehend what that represents)\
+\
+	Once their value is understood, satisfy any CURIOSITY regarding\'85\
+		\'85WHERE that currency is ACCEPTED TO USE within, to obtain OTHER THINGS, spending on products or services, etc.\
+		\'85which REGION of the world is represented by that currency, for social aspects of its worth.\
+		\'85what SOURCE OF INFORMATION is currently expressing this value for our interpretation, whether it's OFFICIAL or not.\
+	\
+	DECIDE whether AT its current value it's WORTHWHILE or not, in THIS MOMENT, to\'85\
+		\'85SPEND it in CASH NOW to GET something ELSE with it\'85\
+			\'85EXCHANGE it for a DIFFERENT currency.\
+			\'85raise DEBT in it by using CREDIT to get something else in exchange for it NOW, mindful of risks changing its future value.\
+			\'85KEEP our current amount until a LATER TIME with the expectation that its value will improve.\
+		\'85GET MORE of it right now to save for later, by purchasing this currency with a different currency or source of money.\
+\
+	SAVE any current values OBTAINED at the moment for LATER USE\'85\
+		\'85for themselves LOCALLY to\'85\
+			\'85use for FURTHER AMBITIONS enabled by the app\'85\
+			\'85SPEED-UP LOADING later\'85\
+			\'85CACHE & load WITHOUT a web CONNECTION\'85\
+			\'85VIEW the data for THEMSELVES at a later time.\
+			\'85PRESENT that information about saved values in DISPLAY format for OTHERS.\
+			\'85TRACKING its value for PRIVATE LOCAL REASONS such as ALARMS, NOTICES, TARGETS, etc.\
+		\'85for OTHER DEVICES whether their OWN or ANOTHER'S\'85\
+			\'85to use in more than one LOCATION either SYNCHRONIZED or not.\
+			\'85in a FORMAT compatible for exchange IN or OUT of the app for a different software TOOL ELSEWHERE.\
+			\'85SHARING their RAW formatted DATA for OTHERS, so those people THEMSELVES can find their own use for that data\'85\
+				\'85being together & GIVEN IN-PERSON.\
+				\'85being FAR-AWAY & GIVEN through the INTERNET.\
+		\'85Encouraging NEW INNOVATIVE USES they come-up with on their own.\
+			\'85Gather other GROUPS' or INDIVIDUALS' data.\
+				\'85cherry-picking with known friends or colleagues, or gathering from larger community. \
+		\'85to ALLOW & HELP *US* evaluate app data anonymously, gathered from all users, improving future VERSION'S insights at scale.\
+			\'85At scale, a user might also find it useful to\'85\
+				\'85share info, save it, compare it with others, import + export and other social constructs.\
+					\'85Know when, where, why and how.\
+\
+\'85are EXAMPLES of what CAN be the PURPOSE of the APP, depending on REASONS that in THEIR HANDS it's VALUABLE to our users.\
+\pard\pardeftab560\partightenfactor0
+
+\f0\b \cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97  
+\f1\b0 REQUIREMENTS  
+\f0\b \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f1\b0 \
+Code test info \'97 Zound Industries\'85\
+
+\f0\b \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab560\partightenfactor0
+
+\f1\b0 \cf2 Problem Statement:\
+\
+You are tasked with making an app that displays a list of cryptocurrencies for a group of users in the USA and Sweden. Each user should be able to get the default prices in USD and then be able to switch the prices to SEK. Use as many as data points you deem necessary to make the user experience valuable to the end user.\
+\
+Make assumptions that you think are necessary in delivering this app.\
+\
+- Prices should be displayed in USD.\
+- User should be able to switch currency to SEK in the app and get updated prices.\
+\
+Key Details:\
+Endpoint: GET https://api.wazirx.com/sapi/v1/tickers/24hr\
+Auth: No authentication needed\
+Parameters: None\
+\
+You will be graded on code maintainability, adhering to standards from iOS and Android. Using MVVM design pattern etc.\
+\
+Android code to be written in Kotlin only\
+iOS code to be written in Swift\
+\
+Extra points for:\
+1. Showing your design quirks and presentation skills\
+2. Code being maintainable and scalable that adheres to modern design patterns.\
+\
+Final Deliverable:\
+1. APK package file and Source Code on git\
+2. UI Screenshot attached of the file app\
+3. Any documentation you think that\'92s necessary\
+\pard\pardeftab560\partightenfactor0
+
+\f0\b \cf2 \'97\'97\'97\'97\'97\'97\'97\'97  \'97\'97\'97\'97\'97\'97\'97\'97  
+\f1\b0 \
+
+\f0\b \
+\'97\'97\'97\'97\'97\'97\'97\'97      
+\f1\b0 STRATEGY        
+\f0\b \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97
+\f1\b0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+\cf2 \'95 Take notes first, about the problem, to remind yourself of details and communicate relevant parts to others.\
+\'95 Use a scalable project architecture that separates tasks, views and core models.\
+\pard\pardeftab560\partightenfactor0
+\cf2 \
+WHAT to do\'85  THINK!\
+\'95 Read the problem.\
+\'95 Analyze the problem, thinking about who it's for and what THEY might do with it that can make it USEFUL.  Brainstorm.\
+	Load the data from the web\'85\
+		It brings CRYPTOCURRENCIES & PRICES & TIMES for each piece of data.\
+\'95 What does the app need to actually communicate, enable or show on-screen to be useful?\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+\cf2 	Include a portion of the UI that can trigger an update load, a comparison, a detail visual, etc.\
+\pard\pardeftab560\partightenfactor0
+\cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+\cf2 	\'85DESIGN a UI that is attractive and simple for the user to enjoy seeing these cryptocurrencies and useful insights.\
+\pard\pardeftab560\partightenfactor0
+\cf2 		Separate data into cryptocurrency items.\
+		Graph chart.\
+		\'85Lines on-screen representing money value for that cryptocurrency at that moment.\
+\
+		With FUTURE DEVELOPMENT time\'85\
+		\'85User needs to SEE TOLERANCE LIMITS important to them on-screen\'85\
+			\'85LINES on-screen representing a MAX/MIN point for value of a relevant currency in view, for user analysis.\
+			\'85and CHANGE them with one SWIPE touch up or down\'85\
+			\'85currency should be displayed with its value within or outside those limits in a graph, instantly understood.\
+			\'85set notices that make the user aware when any of their limits have been reached, at some point.\
+		\'85Allow values to be seen by the user graphed by\'85\
+			\'85TIME so it displays a TREND.\
+			\'85COMPARISON to other crytpocurrencies.\
+			\'85Other MONEY values.\
+\
+DEFINE & FILTER DOWN TO ESSENTIALS for the start with the short-term, proof-of-concept goals\'85\
+	[see USE CASE further BELOW as a guide]\
+\'95 Imagine what you need to make a proof-of-concept for this exercise\'85  Reasons for what data, which processes, UI, etc.\
+\
+HOW to code it\'85\
+\'95 View the JSON data and determine its format.  Use a tool such as QuickType\'85 ( https://app.quicktype.io/#l=swift )\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+\cf2 \'95 Code a MODEL for individual data gathered when a web json file is fetched.  Ensure it's valid and it works.\
+\'95 Code a mechanism to FETCH the JSON data file from the address.\
+\'95 Figure out a UI to present the data with the pieces a user sees in a useful manner, which must make sense to them.\
+	[see USE CASE further BELOW as a guide]\
+\'95 Code the needed pieces to take the data into the UI. \
+\
+Thoughts\'85\
+\'95 Future code tests should be simple to add and able to easily change in the future.\
+\'95 Use a Constants file for keeping needed changes in UI  & other useful information, simple during prototyping.\
+\pard\pardeftab560\partightenfactor0
+
+\f0\b \cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\'97\'97
+\f1\b0 \
+
+\f0\b 	USE-CASE\'85\
+\'97\'97 User wants to see cryptocurrency value & trends.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab560\pardirnatural\partightenfactor0
+
+\f1\b0 \cf0 User LAUNCHES the app.\
+Sees LIST with cryptocurrencies' NAMES & SYMBOLS with a VALUE.\
+BANNER at top shows either SEK or USD, the ABBREVIATION of the country currency values expressed below.\
+	Pressing one or the other CHANGES number amounts below to display cryptocurrency value in that kind of MONEY, SEK or USD.\
+With each cryptocurrency is displayed its CURRENT VALUE in USD and an ARROW showing its TREND up or down.\
+Touches currency ITEM to SELECT that currency from the view to see its DETAILS\'85\
+	POPUP shows details\'85\
+		Top: 			Currency NAME.\
+		Left side:		GRAPH TREND of its VALUE over TIME.\
+		Right side:	HIGHLIGHTS with current VALUE & ARROW TREND showing % \'b1 $, etc.\
+		Bottom:		HISTORY list with previous points in time with DATE & VALUE, can scroll up or down.\
+						Selecting any line changes the details shown above.\
+		Swiping down dismisses the details popup.\
+User QUITS.\
+\pard\pardeftab560\partightenfactor0
+
+\f0\b \cf2 \'97\'97\
+\'97\'97
+\f1\b0 \
+
+\f0\b \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+
+\f1\b0 \cf2 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+
+\f0\b \cf2 \'97\'97\'97 
+\f1\b0 CODE REVIEW & BEST PRACTICES\'85 REMINDER 
+\f0\b \'97\'97\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+\cf0 Architecture\'85
+\f1\b0 \cf2 \
+User Interface handles interactions.\
+Business Logic handles concepts & behavior of the app to match company needs.\
+Data Access exposes data stored to business layer.\
+\'85Higher layer can access any layer below it, but not vice versa.\
+Make sure that the Directory Structure is being followed.\
+Separate logic from action.\
+All of the business logic of your application lives in the value layer, goes in View Model.\
+GUI Views don't have any Data Objects.\
+Single responsibility, different code for different tasks.\
+Create separate classes (and files) to manage different kind of responsibilities to avoid AppDelegate overuse.\
+\
+\
+
+\f0\b \cf0 Clarity\'85
+\f1\b0 \cf2 \
+Avoid ambiguous method names, be crystal clear when naming things by ensuring name says what it does.\
+Variable names (i.e. Booleans) should be interrogative.\
+Namespace all constants by use, 'enum Xyz' with static let xyz, inside an 'enum Current'.\
+Fonts, Colors, etc. should not be accessed at random, a separate file should handle them.\
+Indentations should be consistent, code easy to read.\
+Keep It Simple Stupid.\
+If any Complex Logic is involved, check there is a Comment Explaining it.\
+Prefer using High Order Functions where returns or arguments can be functions, closures.\
+Check if any API provided by Apple can make things simpler.\
+Don\'92t Repeat Yourself.\
+Avoid disabling unused code, if you don\'92t need it now, remove it.\
+Improve any bad code if you can.\
+Ensure Guidelines set by the team are followed, Lint check common use (SwiftLint).\
+\
+\
+
+\f0\b \cf0 Understandable, clean code\'85
+\f1\b0 \cf2 \
+Prefer enum, switch over if else.\
+Check if any hard-coded checks (maybe strings) can be changed to enum.\
+Use Nested Types clearly, like putting enum inside your Class, to avoid putting them in global scope.\
+Avoid nested structures (loops, if/else).\
+Use variadic parameters, so multiple values are allowed. i.e. "parameter_here..."\
+Conformance to Protocols should be in Extensions.\
+Avoid Type Inference.\
+Avoid overusing reference types \'97 only use reference types for live objects.\
+Design to inject dependencies manually and ensure that Dependencies are injected manually.\
+Prevent dependency injection by avoiding overuse of any default parameters.\
+Make sure there are no Retain Cycles, in order to deallocate as intended.\
+Never(?) use implicitly unwrapped properties.\
+Make sure there are no Force Unwraps.\
+Only use '_' when needed, in unused return or ignored in completion blocks.\
+Classes should be final by default.\
+\
+\
+
+\f0\b \cf0 Security\'85
+\f1\b0 \cf2 \
+Disable auto-correct for sensitive keyboard input with autocorrectionType property set to UITextAutocorrectionTypeNo.\
+Each and every text input must be checked for bad characters and escape sequences.\
+Use NSSecureCoding in place of NSCoding to avoid outside data hacking.\
+Use isExcludedFromBackupKey to avoid iCloud getting sensitive data.\
+\
+\
+
+\f0\b \cf0 QA\'85
+\f1\b0 \cf2 \
+Verify the main functionality of the app works.\
+Navigate the most common workflow.\
+Ensure Bug fixes perform adequately.\
+Ensure no import of unnecessary modules.\
+Check if any deprecated API is being used.\
+Check if there are unintended changes in the Public Release.\
+Avoid extensive logging.  Just use error.\
+Error check corner cases (i.e. Error Handling as in backend fails should show an Error Message).\
+Ensure Code Coverage of all new code, when code changes a corresponding unit test exists for every case within its module.\
+\
+\
+
+\f0\b \cf0 Unit Tests\'85
+\f1\b0 \cf2 \
+Given x\'85 When y\'85 Then\'85 z\
+Use consistent naming conventions.\
+It\'92s better to test as you commit code changes to avoid errors.\
+All the bugs found must be fixed before moving to the next phase.\
+Group related unit tests together in their own suite.\
+Only test what is needed and verify that it works as expected.\
+Focus more on the tests that affect the behavior of the system.\
+Test individual pieces of code, one at a time.\
+Test your model in isolation, test cannot be using UIKit.\
+Set up unit tests for views and unit tests for controllers.\
+Write tests for all of the edge cases.\
+Test boundary conditions if any possibility exists for Index Out of Bounds Exception (i.e. Accessing values from an Array).\
+Test app\'92s model and async functionality.\
+Write unit tests for asynchronous code.\
+\
+\
+
+\f0\b \cf0 Team Revision\'85
+\f1\b0 \cf2 \
+Make the Quality Assurance approval MANDATORY\'85\
+A Merge Check ensures good implementation for merging without bugs.\
+Developer Approval ensures code quality.\
+Quality Assurance Approval ensures no bugs exist.\
+\pard\pardeftab560\partightenfactor0
+
+\f0\b \cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Add \'93SwiftLint\'94 as \'93Run Script SwiftLint\'94, in \'93Build Phases\'94, after \'93Compile Sources\'94\'85\
+\pard\tx840\pardeftab840\pardirnatural\partightenfactor0
+
+\f2\b0\fs34 \cf3 \cb4 export\cf5  PATH=\cf6 "\cf5 $PATH\cf6 :/opt/homebrew/bin"\cf5 \
+\cf3 if\cf5  which swiftlint > /dev/null; \cf3 then\cf5 \
+    swiftlint lint --fix --format && swiftlint\
+\cf3 else\cf5 \
+  \cf3 echo\cf5  \cf6 "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\\n note:       \'85or if you have brew, install using\'85\\n note:      brew install swiftlint"\cf5 \
+  \cf3 exit\cf5  \cf7 1\cf5 \
+\cf3 fi\cf5 \
+\
+\pard\pardeftab560\partightenfactor0
+
+\f1\fs36 \cf2 \cb1 Helper tools for using Mock Data\'85\
+\
+\pard\pardeftab560\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://app.quicktype.io/#l=swift"}}{\fldrslt \cf2 https://app.quicktype.io/#l=swift}} \'85 JSON schema in Swift from pasted JSON.\
+\pard\pardeftab560\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://jsonformatter.curiousconcept.com/"}}{\fldrslt \cf2 https://jsonformatter.curiousconcept.com/}} \'85 Readable JSON from pasted raw JSON.\
+\pard\pardeftab560\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://designer.mocky.io/design"}}{\fldrslt \cf2 https://designer.mocky.io/design}} \'85 Network request data.\
+\pard\pardeftab560\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://beta5.objgen.com/json/local/design"}}{\fldrslt \cf2 https://beta5.objgen.com/json/local/design}} \'85 Design JSON format from written text.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab560\pardirnatural\partightenfactor0
+\cf2 \
+}
