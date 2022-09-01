@@ -137,6 +137,7 @@
 			buildConfigurationList = 7210AE5B28C1466300140645 /* Build configuration list for PBXNativeTarget "ZoundCase" */;
 			buildPhases = (
 				7210AE3328C1466200140645 /* Sources */,
+				7210AE6528C1484000140645 /* Run Script SwiftLint */,
 				7210AE3428C1466200140645 /* Frameworks */,
 				7210AE3528C1466200140645 /* Resources */,
 			);
@@ -253,6 +254,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7210AE6528C1484000140645 /* Run Script SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n    swiftlint lint --fix --format && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\\n note:       …or if you have brew, install using…\\n note:      brew install swiftlint\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7210AE3328C1466200140645 /* Sources */ = {
