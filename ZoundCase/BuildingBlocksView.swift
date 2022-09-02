@@ -102,6 +102,7 @@ extension ContentView {
                 .multilineTextAlignment(.trailing)
                 .font(SwiftUI.Font.subheadline)
         }
+        .padding(.horizontal)
     }
 
     fileprivate func trendDirection(_ cryptoUpdate: CryptoValue) -> some View {
