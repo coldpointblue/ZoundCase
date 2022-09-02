@@ -56,6 +56,15 @@ extension ContentView {
             RoundedRectangle(cornerRadius: 34, style: .continuous)
                 .strokeBorder(isSwedishMoney ? .blue : .red.opacity(World.buttonTintAmount), lineWidth: 4)
         )
+        .buttonStyle(PressScale())
+    }
+
+    struct PressScale: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .scaleEffect(configuration.isPressed ? 1.2 : 1)
+                .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+        }
     }
 }
 
