@@ -18,6 +18,7 @@
 		7210AE6A28C14D6600140645 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210AE6928C14D6600140645 /* Network.swift */; };
 		7210AE6D28C14DF000140645 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210AE6C28C14DF000140645 /* CurrencyModel.swift */; };
 		729BFE8428C243E900358E6C /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729BFE8328C243E900358E6C /* Conversion.swift */; };
+		729BFE8628C25A7E00358E6C /* BuildingBlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		7210AE6928C14D6600140645 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		7210AE6C28C14DF000140645 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		729BFE8328C243E900358E6C /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
+		729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingBlocksView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				7210AE3A28C1466200140645 /* ZoundCaseApp.swift */,
 				7210AE6628C14CDF00140645 /* Constants.swift */,
 				729BFE8328C243E900358E6C /* Conversion.swift */,
+				729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */,
 				7210AE3C28C1466200140645 /* ContentView.swift */,
 				7210AE6B28C14DCD00140645 /* Models */,
 				7210AE6828C14D4B00140645 /* Networking */,
@@ -315,6 +318,7 @@
 				729BFE8428C243E900358E6C /* Conversion.swift in Sources */,
 				7210AE6A28C14D6600140645 /* Network.swift in Sources */,
 				7210AE6728C14CDF00140645 /* Constants.swift in Sources */,
+				729BFE8628C25A7E00358E6C /* BuildingBlocksView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,29 +15,27 @@
 //  ----------------------------------------------------
 
 //  ----------------------------------------------------
-/*  Goal explanation:  Show UI for values of cryptocurrencies. */
+/*  Goal explanation:  Show main UI for values of cryptocurrencies. */
 //  ----------------------------------------------------
 
 import SwiftUI
 
 struct ContentView: View {
+    @State var network = NetworkService()
     @State var jsonData: ExchangeRates = []
+    @StateObject var centralBankUpdate = CentralBankDelegate()
     @State var isSwedishMoney: Bool = false
     @State var exchangeRateDollarSEK: Double = 10.0
     // NOTE: Cryptocurrencies in JSON are listed with INR (Indian Rupee).
 
-    @StateObject var centralBankUpdate = CentralBankDelegate()
-
     var body: some View {
-        let network = NetworkService()
-
         VStack {
             Text("JSON has\n" + String(jsonData.count) + " prices listed.")
                 .multilineTextAlignment(.center)
                 .padding(.top)
             Group {
                 HStack {
-                    chartIcon()
+                    titleWithIcon()
                     moneyShownButton()
                 }
             }
@@ -52,98 +50,6 @@ struct ContentView: View {
             // Or load XML async with a different one.
             centralBankUpdate.loadCentralBankRates()
         })
-    }
-}
-
-// UI Presentation of Contents…
-extension ContentView {
-    var deviceWidth: CGFloat {
-        UIScreen.main.bounds.width
-    }
-    var deviceHeight: CGFloat {
-        UIScreen.main.bounds.height
-    }
-
-    fileprivate func trendDirection(_ cryptoUpdate: CryptoValue) -> some View {
-        let whichWay = (cryptoUpdate.lastPrice >= cryptoUpdate.openPrice)
-        let perhapsIcon = (cryptoUpdate.lastPrice == cryptoUpdate.openPrice
-                            ? "timelapse" : "chart.line.uptrend.xyaxis.circle")
-        return Group {
-            Image(systemName: whichWay ?
-                    perhapsIcon : "arrow.down.forward")
-                .foregroundColor(whichWay ? .red : .blue)
-                .frame(height: .none)
-            VStack {
-                Text(cryptoUpdate.lastPrice)
-                Text(cryptoUpdate.openPrice)
-                    .font(SwiftUI.Font.footnote)
-                    .foregroundColor(.blue)
-            }
-        }
-    }
-
-    fileprivate func leadingFigures(_ cryptoUpdate: CryptoValue) -> some View {
-        return Group {
-            Text(cryptoUpdate.symbol)
-                .font(SwiftUI.Font.headline)
-            Text(cryptoUpdate.baseAsset)
-                .multilineTextAlignment(.trailing)
-                .font(SwiftUI.Font.subheadline)
-        }
-    }
-
-    fileprivate func listEveryCryptoPrice() -> some View {
-        return List {
-            ForEach(QuoteAsset.allCases, id: \.rawValue) { oneCurrency in
-
-                Section(header: Text(oneCurrency.rawValue)) {
-                    ForEach(jsonData) { (cryptoUpdate: CryptoValue) in
-                        if cryptoUpdate.quoteAsset == oneCurrency {
-                            HStack {
-                                VStack.init(alignment: SwiftUI.HorizontalAlignment.center) {
-                                    leadingFigures(cryptoUpdate)
-                                }
-                                trendDirection(cryptoUpdate)
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
-    }
-
-    fileprivate func moneyShownButton() -> some View {
-        return Button {
-            isSwedishMoney.toggle()
-        } label: {
-            //            Text(isSwedishMoney ? "  SEK" : "  USD")
-            Label((isSwedishMoney ? "  SEK" : "  USD"), systemImage: "arrow.left.arrow.right")
-                .font(Font.headline.weight(.bold))
-                .foregroundColor(isSwedishMoney ? .blue : .blue)
-                .padding(.horizontal)
-                .frame(maxWidth: deviceWidth / 3)
-        }
-        .padding([.vertical], 8)
-        .background(
-            RoundedRectangle(cornerRadius: 34, style: .continuous)
-                .fill(isSwedishMoney ? .yellow : .white)
-                .opacity(World.buttonTintAmount)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 34, style: .continuous)
-                .strokeBorder(isSwedishMoney ? .blue : .red.opacity(World.buttonTintAmount), lineWidth: 4)
-        )
-    }
-
-    fileprivate func chartIcon() -> some View {
-        return Group {
-            Text("CryptoValues")
-                .font(Font.title.weight(.bold))
-            Image(systemName: "chart.line.uptrend.xyaxis")
-                .frame(height: .none)
-        }
-        .foregroundColor(.mint)
     }
 }
 
