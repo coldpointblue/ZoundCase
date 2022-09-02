@@ -29,4 +29,6 @@ struct World {
     static let jsonNoDataErrorMessage: String = "Network Error:\n  Data\n      missing"
     static let webDataDownloadErrorMessage: String = "\r—————— data download ERROR\r"
     static let jsonErrorDecodingMessage: String = "\r—————— JSON Decoder ERROR\r"
+
+    static let buttonTintAmount = 0.7
 }
