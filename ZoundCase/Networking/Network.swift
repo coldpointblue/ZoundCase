@@ -26,13 +26,14 @@ class NetworkService {
     // The more sensible way… Quick & easy code during prototyping.
     @MainActor
     func fetchSpecificJSON() async throws -> ExchangeRates {
-        guard let liveURL = URL(string: World.cryptoPriceUpdateURL),
-              let validURL = URLRequest(url: liveURL).url?.absoluteString else {
+        let validAddress = doubleCheckWebAddress(World.cryptoPriceUpdateURL)
+        guard validAddress != "" else {
             return []
         }
         var remoteJSON: ExchangeRates
         do {
-            remoteJSON = try await NetworkService().fetchGenericData(validURL)
+            remoteJSON = try await self.fetchGenericData(validAddress)
+            // NetworkService().fetchGenericData(validAddress)
         } catch {
             throw NSError(domain: World.webDataDownloadErrorMessage, code: 0, userInfo: nil)
         }
@@ -56,7 +57,7 @@ class NetworkService {
             }
             #if PRODUCTION
             #else
-            debugPrintIncomingData(incomingData)
+            // debugPrintIncomingData(incomingData)
             #endif
             let rateUpdates = try JSONDecoder().decode(YourType.self, from: incomingData)
             return rateUpdates
@@ -64,6 +65,67 @@ class NetworkService {
             print(error, terminator: World.jsonErrorDecodingMessage)
             // swiftlint:disable:next force_cast
             return "" as! YourType
+        }
+    }
+}
+
+func doubleCheckWebAddress(_ givenAddress: String) -> String {
+    guard let liveWebURL = URL(string: givenAddress),
+          let validWebURL = URLRequest(url: liveWebURL).url?.absoluteString else {
+        return ""
+    }
+    return validWebURL
+}
+
+class CentralBankDelegate: NSObject, XMLParserDelegate, ObservableObject {
+    var currentSEK: Double = 0
+    var currentUSD: Double = 0
+
+    func loadCentralBankRates() {
+        let validAddress = doubleCheckWebAddress(World.euCentralBankExchangeRateURL)
+        guard validAddress != "" else {
+            return
+        }
+        let url = URL(string: validAddress)!
+        let request = URLRequest(url: url)
+
+        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+            if let error = error {
+                print("Error in dataTaskWithRequest: \(error)")
+                return
+            }
+            guard let data = data else {
+                print("dataTaskWithRequest has nil data")
+                return
+            }
+
+            let parser = XMLParser(data: data)
+            parser.delegate = self
+            parser.parse()
+        }
+        task.resume()
+    }
+
+    // Get current SEK and USD rates of exchange from official EU Central Bank.
+    func parser(_ parser: XMLParser, didStartElement elementName: String,
+                namespaceURI: String?, qualifiedName qName: String?,
+                attributes attributeDict: [String: String] = [:]) {
+        if elementName == "Cube" {
+            var targetCurrency: String { attributeDict["currency"] ?? "" }
+            var amount: String { attributeDict["rate"] ?? "" }
+
+            if targetCurrency == "SEK" || targetCurrency == "USD" {
+                guard amount != "" else {
+                    fatalError(" Fail fetching money rates.")
+                }
+                let rateOfExchange = (amount as NSString).doubleValue
+
+                if targetCurrency == "SEK" {
+                    currentSEK = rateOfExchange
+                } else {
+                    currentUSD = rateOfExchange
+                }
+            }
         }
     }
 }

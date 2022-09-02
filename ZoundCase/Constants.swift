@@ -23,6 +23,7 @@ import Foundation
 
 struct World {
     static let cryptoPriceUpdateURL = "https://api.wazirx.com/sapi/v1/tickers/24hr"
+    static let euCentralBankExchangeRateURL = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml"
 
     static let sourceURLInvalidErrorMessage: String = "\r—————— invalid URL\r"
     static let jsonNoDataErrorMessage: String = "Network Error:\n  Data\n      missing"
