@@ -33,7 +33,6 @@ class NetworkService {
         var remoteJSON: ExchangeRates
         do {
             remoteJSON = try await self.fetchGenericData(validAddress)
-            // NetworkService().fetchGenericData(validAddress)
         } catch {
             throw NSError(domain: World.webDataDownloadErrorMessage, code: 0, userInfo: nil)
         }
