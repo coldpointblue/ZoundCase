@@ -20,7 +20,7 @@
 
 import SwiftUI
 
-// Top banner, title and button.
+// MARK: - Top banner, title and button.
 extension ContentView {
     var deviceWidth: CGFloat {
         UIScreen.main.bounds.width
@@ -68,7 +68,7 @@ extension ContentView {
     }
 }
 
-// Content list with cryptocurrencies and their numbers.
+// MARK: - Content list with cryptocurrencies and their numbers.
 extension ContentView {
     func listEveryCryptoPrice() -> some View {
         return List {
@@ -92,7 +92,7 @@ extension ContentView {
     }
 }
 
-// UI Presentation of Contents…
+// MARK: - Numbers Row UI Presentation of Contents.
 extension ContentView {
     fileprivate func leadingFigures(_ cryptoUpdate: CryptoValue) -> some View {
         return Group {

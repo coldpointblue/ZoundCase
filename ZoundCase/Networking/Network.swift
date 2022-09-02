@@ -21,7 +21,7 @@
 
 import Foundation
 
-// MARK: - NetworkService
+// MARK: - Network Service to fetch crypto numbers JSON data.
 class NetworkService {
     // The more sensible way… Quick & easy code during prototyping.
     @MainActor
@@ -77,6 +77,7 @@ func doubleCheckWebAddress(_ givenAddress: String) -> String {
     return validWebURL
 }
 
+// MARK: - Central Bank to fetch money XML data.
 class CentralBankDelegate: NSObject, XMLParserDelegate, ObservableObject {
     var eurosInExchange: [String: Double] = [:]
     var wantedCurrencies: Set<String> = ["SEK", "USD", "INR"]
@@ -131,8 +132,7 @@ class CentralBankDelegate: NSObject, XMLParserDelegate, ObservableObject {
 
 #if PRODUCTION
 #else
-// MARK: - Debugging Helpers
-// Debugging helpers to print fetched JSON data or response status code.
+// MARK: - Debugging helpers to print fetched JSON data or response status code.
 private func debugPrintIncomingData(_ incomingData: Data) {
     print("\r\r" + String(data: incomingData, encoding: .utf8)! +
             "\r——————————————>>>DOWNLOADED", terminator: "\r")
