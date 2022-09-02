@@ -124,12 +124,12 @@ extension ContentView {
         return Button {
             isSwedishMoney.toggle()
         } label: {
-            Text(isSwedishMoney ? "  SEK":"  USD")
+            //            Text(isSwedishMoney ? "  SEK" : "  USD")
+            Label((isSwedishMoney ? "  SEK" : "  USD"), systemImage: "arrow.left.arrow.right")
                 .font(Font.headline.weight(.bold))
                 .foregroundColor(isSwedishMoney ? .blue : .blue)
                 .padding(.horizontal)
                 .frame(maxWidth: deviceWidth / 3)
-
         }
         .padding([.vertical], 8)
         .background(
