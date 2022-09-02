@@ -24,6 +24,7 @@ struct ContentView: View {
     @State var jsonData: ExchangeRates = []
     @State var isSwedishMoney: Bool = false
     @State var exchangeRateDollarSEK: Double = 10.0
+    // NOTE: Cryptocurrencies in JSON are listed with INR (Indian Rupee).
 
     @StateObject var centralBankUpdate = CentralBankDelegate()
 
@@ -48,17 +49,9 @@ struct ContentView: View {
                 jsonData = try await network.fetchSpecificJSON()
             } // Load JSON async one way.
 
-            // Or load with another with XML async.
+            // Or load XML async with a different one.
             centralBankUpdate.loadCentralBankRates()
         })
-    }
-
-    func moneyRate(_ isFromDollar: Bool) -> Double {
-        if isFromDollar {
-            return centralBankUpdate.currentSEK / centralBankUpdate.currentUSD
-        } else {
-            return centralBankUpdate.currentUSD / centralBankUpdate.currentSEK
-        }
     }
 }
 

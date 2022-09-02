@@ -78,9 +78,10 @@ func doubleCheckWebAddress(_ givenAddress: String) -> String {
 }
 
 class CentralBankDelegate: NSObject, XMLParserDelegate, ObservableObject {
-    var currentSEK: Double = 0
-    var currentUSD: Double = 0
+    var eurosInExchange: [String: Double] = [:]
+    var wantedCurrencies: Set<String> = ["SEK", "USD", "INR"]
 
+    // EU Central Bank has XML published every day with money rates.
     func loadCentralBankRates() {
         let validAddress = doubleCheckWebAddress(World.euCentralBankExchangeRateURL)
         guard validAddress != "" else {
@@ -106,7 +107,7 @@ class CentralBankDelegate: NSObject, XMLParserDelegate, ObservableObject {
         task.resume()
     }
 
-    // Get current SEK and USD rates of exchange from official EU Central Bank.
+    // Extract current SEK and USD rates of exchange from official EU Central Bank data.
     func parser(_ parser: XMLParser, didStartElement elementName: String,
                 namespaceURI: String?, qualifiedName qName: String?,
                 attributes attributeDict: [String: String] = [:]) {
@@ -114,17 +115,15 @@ class CentralBankDelegate: NSObject, XMLParserDelegate, ObservableObject {
             var targetCurrency: String { attributeDict["currency"] ?? "" }
             var amount: String { attributeDict["rate"] ?? "" }
 
-            if targetCurrency == "SEK" || targetCurrency == "USD" {
+            if wantedCurrencies.allSatisfy(eurosInExchange.keys.contains) {
+                return
+            }
+
+            if wantedCurrencies.contains(targetCurrency) {
                 guard amount != "" else {
                     fatalError(" Fail fetching money rates.")
                 }
-                let rateOfExchange = (amount as NSString).doubleValue
-
-                if targetCurrency == "SEK" {
-                    currentSEK = rateOfExchange
-                } else {
-                    currentUSD = rateOfExchange
-                }
+                eurosInExchange[targetCurrency] = (amount as NSString).doubleValue
             }
         }
     }
