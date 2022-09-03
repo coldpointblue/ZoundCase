@@ -111,13 +111,14 @@ extension ContentView {
                             }
                         }
                     }
-
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        // Show details of tapped selection.
+                    }
                 }
+
             }
-            .contentShape(Rectangle())
-            .onTapGesture {
-                // Show details of tapped selection.
-            }
+
         }
         .listStyle(SidebarListStyle())
     }
