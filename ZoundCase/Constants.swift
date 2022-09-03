@@ -19,7 +19,7 @@
  to alter easily. */
 //  ----------------------------------------------------
 
-import Foundation
+import SwiftUI
 
 struct World {
     static let cryptoPriceUpdateURL = "https://api.wazirx.com/sapi/v1/tickers/24hr"
@@ -32,3 +32,11 @@ struct World {
 
     static let buttonTintAmount = 0.7
 }
+
+#if PRODUCTION
+#else
+func printWithinBodyWherever(_ someVars: Any...) -> some View {
+    for beautyWithin in someVars { print("----> \(beautyWithin) <-----") }
+    return EmptyView()
+}
+#endif
