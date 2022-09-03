@@ -42,7 +42,7 @@ extension ContentView {
         } label: {
             Label((isSwedishMoney ? "  SEK" : "  USD"), systemImage: "arrow.left.arrow.right")
                 .font(Font.headline.weight(.bold))
-                .foregroundColor(isSwedishMoney ? .blue : .blue)
+                .foregroundColor(.blue)
                 .padding(.horizontal)
                 .frame(maxWidth: deviceWidth / 3)
         }
@@ -64,6 +64,25 @@ extension ContentView {
             configuration.label
                 .scaleEffect(configuration.isPressed ? 1.2 : 1)
                 .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+        }
+    }
+}
+
+// MARK: - Slider to modify the Trading Period for trend calculations.
+extension ContentView {
+    func tradingPeriodSlider() -> some View {
+        return Group {
+            Text("Trading Period is \((timeLine == 0) ? 0 : -timeLine, specifier: "%.1f") elapsed time.")
+            HStack {
+                Text("Before")
+                Slider(value: $timeLine, in: -200 ... 0, step: 0.5)
+                    .cornerRadius(13)
+                    .shadow(color: .purple, radius: 2, x: -2, y: 1)
+                    .padding(.horizontal)
+                    .accentColor(Color.primary.opacity(0.03))
+                Text("Now")
+            }
+            .padding([.horizontal])
         }
     }
 }

@@ -28,6 +28,8 @@ struct ContentView: View {
     @State var exchangeRateDollarSEK: Double = 10.0
     // NOTE: Cryptocurrencies in JSON are listed with INR (Indian Rupee).
 
+    @State var timeLine: Double = 0
+
     var body: some View {
         VStack {
             Text("JSON has\n" + String(jsonData.count) + " prices listed.")
@@ -39,6 +41,7 @@ struct ContentView: View {
                     moneyShownButton()
                 }
             }
+            tradingPeriodSlider()
             listEveryCryptoPrice()
                 .listStyle(.plain)
         }

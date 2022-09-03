@@ -108,9 +108,8 @@
 				7210AE6428C147C700140645 /* README.rtf */,
 				7210AE3A28C1466200140645 /* ZoundCaseApp.swift */,
 				7210AE6628C14CDF00140645 /* Constants.swift */,
-				729BFE8328C243E900358E6C /* Conversion.swift */,
-				729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */,
-				7210AE3C28C1466200140645 /* ContentView.swift */,
+				729BFE8828C28C4700358E6C /* ViewModelsLogic */,
+				729BFE8728C28C0000358E6C /* UIViews */,
 				7210AE6B28C14DCD00140645 /* Models */,
 				7210AE6828C14D4B00140645 /* Networking */,
 				7210AE3E28C1466300140645 /* Assets.xcassets */,
@@ -158,6 +157,23 @@
 				7210AE6C28C14DF000140645 /* CurrencyModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		729BFE8728C28C0000358E6C /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				7210AE3C28C1466200140645 /* ContentView.swift */,
+				729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */,
+			);
+			path = UIViews;
+			sourceTree = "<group>";
+		};
+		729BFE8828C28C4700358E6C /* ViewModelsLogic */ = {
+			isa = PBXGroup;
+			children = (
+				729BFE8328C243E900358E6C /* Conversion.swift */,
+			);
+			path = ViewModelsLogic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
