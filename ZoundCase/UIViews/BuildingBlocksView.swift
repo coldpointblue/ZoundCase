@@ -98,10 +98,16 @@ extension ContentView {
                     ForEach(jsonData) { (cryptoUpdate: CryptoValue) in
                         if cryptoUpdate.quoteAsset == oneCurrency {
                             HStack {
-                                VStack.init(alignment: SwiftUI.HorizontalAlignment.center) {
-                                    leadingFigures(cryptoUpdate)
+                                HStack {
+                                    Spacer()
+                                    VStack.init(alignment: SwiftUI.HorizontalAlignment.center) {
+                                        leadingFigures(cryptoUpdate)
+                                    }
                                 }
-                                trendDirection(cryptoUpdate)
+                                HStack {
+                                    trendDirection(cryptoUpdate)
+                                    Spacer()
+                                }
                             }
                         }
                     }
