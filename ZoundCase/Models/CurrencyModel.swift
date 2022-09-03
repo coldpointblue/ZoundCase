@@ -27,20 +27,32 @@ typealias ExchangeRates = [CryptoValue]
 struct CryptoValue: Codable, Identifiable, Hashable {
     let id = UUID().uuidString
 
-    let quoteAsset: QuoteAsset
-
-    let symbol, baseAsset: String
-    let openPrice, lowPrice, highPrice, lastPrice: String
-    let volume, bidPrice, askPrice: String
     let pointInTime: Int
+    let symbol, baseAsset: String
+    let quoteAsset: QuoteAsset
+    let lastPrice, highPrice, lowPrice: String
+    let openPrice: String
+    let bidPrice, askPrice: String
+    let volume: String
 
     enum CodingKeys: String, CodingKey {
-        case quoteAsset
-        case symbol, baseAsset
-        case openPrice, lowPrice, highPrice, lastPrice
-        case volume, bidPrice, askPrice
         case pointInTime = "at"
+        case symbol, baseAsset
+        case quoteAsset
+        case lastPrice, highPrice, lowPrice
+        case openPrice
+        case bidPrice, askPrice
+        case volume
     }
+
+    static var exampleCryptoValue = CryptoValue(pointInTime: 1661870066000,
+                                                symbol: "yggusdt", baseAsset: "ygg",
+                                                quoteAsset: QuoteAsset.usdt,
+                                                lastPrice: "0.5266", highPrice: "0.5308", lowPrice: "0.5266",
+                                                openPrice: "0.5275",
+                                                bidPrice: "0.4992", askPrice: "0.5151",
+                                                volume: "148.6"
+    )
 }
 
 enum QuoteAsset: String, Codable, CaseIterable {
