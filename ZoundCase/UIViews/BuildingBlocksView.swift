@@ -114,7 +114,12 @@ extension ContentView {
 
                 }
             }
+            .contentShape(Rectangle())
+            .onTapGesture {
+                // Show details of tapped selection.
+            }
         }
+        .listStyle(SidebarListStyle())
     }
 }
 
