@@ -70,12 +70,13 @@ extension ContentView {
 
 // MARK: - Slider to modify the Trading Period for trend calculations.
 extension ContentView {
-    func tradingPeriodSlider() -> some View {
+    func tradingPeriodSlider(_ keepEyeOn: inout Binding<Double>) -> some View {
         return Group {
-            Text("Trading Period is \((timeLine == 0) ? 0 : -timeLine, specifier: "%.1f") elapsed time.")
+            // swiftlint:disable:next line_length
+            Text("Trading Period is \((keepEyeOn.wrappedValue == 0) ? 0 : -keepEyeOn.wrappedValue, specifier: "%.1f") elapsed time.")
             HStack {
-                Text("Before")
-                Slider(value: $timeLine, in: -200 ... 0, step: 0.5)
+                Text("Before")  // Text outside Slider to keep without shadow for now.
+                Slider(value: keepEyeOn, in: -200 ... 0, step: 0.5) {  } // Use the numbers here later.
                     .cornerRadius(13)
                     .shadow(color: .purple, radius: 2, x: -2, y: 1)
                     .padding(.horizontal)

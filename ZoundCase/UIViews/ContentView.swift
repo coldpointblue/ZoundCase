@@ -31,6 +31,8 @@ struct ContentView: View {
     @State var timeLine: Double = 0
 
     var body: some View {
+        var bindingToTimeLine = $timeLine
+
         VStack {
             Text("JSON has\n" + String(jsonData.count) + " prices listed.")
                 .multilineTextAlignment(.center)
@@ -41,7 +43,7 @@ struct ContentView: View {
                     moneyShownButton()
                 }
             }
-            tradingPeriodSlider()
+            tradingPeriodSlider(&bindingToTimeLine)
             listEveryCryptoPrice()
                 .listStyle(.plain)
         }
