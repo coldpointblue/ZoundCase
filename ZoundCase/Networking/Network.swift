@@ -63,6 +63,10 @@ class NetworkService {
         }
         return remoteJSON
     }
+    // Disabled this in favor of Combine auto-load.
+    //    Task {
+    //        wholeMarketViewModel.jsonDataTruthInstance = try await wholeMarketViewModel.network.fetchSpecificJSON()
+    //    } // Load JSON async one way.
 
     // Generic Fetch Query for Data
     private func fetchGenericData<YourType: Codable>(_ sourceURLString: String) async throws -> YourType {
