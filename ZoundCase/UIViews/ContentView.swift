@@ -24,9 +24,6 @@ import Combine
 struct ContentView: View {
     @StateObject var wholeMarketViewModel: CryptoMarketViewModel = CryptoMarketViewModel()
 
-    @State var isSwedishMoney: Bool = false
-    // NOTE: Cryptocurrencies in JSON are listed with INR (Indian Rupee).
-
     @State var timeLine: Double = 0
 
     @State var showCryptoDetailView = false
@@ -36,7 +33,10 @@ struct ContentView: View {
         var bindingToTimeLine = $timeLine
 
         VStack {
-            Text("JSON has\n" + String(wholeMarketViewModel.jsonDataTruthInstance.count) + " prices listed.")
+            moneyRates()
+            Text("  JSON has\n"
+                    + String(wholeMarketViewModel.jsonDataTruthInstance.count)
+                    + " prices listed.")
                 .multilineTextAlignment(.center)
                 .padding(.top)
             Group {

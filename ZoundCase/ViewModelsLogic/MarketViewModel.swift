@@ -28,6 +28,8 @@ class CryptoMarketViewModel: ObservableObject {
     // Services…
     @Published var network = NetworkService()
     @Published var centralBankUpdate = CentralBankDelegate()
+    @Published var isSwedishMoney: Bool = false
+    // NOTE: Cryptocurrencies in JSON are listed with INR (Indian Rupee).
 
     // Vars used in business logic.
     @Published var exchangeRateDollarSEK: Double = 0.0
@@ -108,5 +110,18 @@ class CryptoMarketViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
+    }
+
+    func currentRate(amount: Double) -> String {
+        // This needs to take into account the volume of the transaction to display?
+        let exchange = centralBankUpdate.eurosInExchange
+        let liveMoney = isSwedishMoney ? "SEK" : "USD"
+        return ((1 / ((amount) * ((exchange["INR"] ?? 0.0) / (exchange[liveMoney] ?? 0.0)) )).format(7))
+    }
+}
+
+extension Double {
+    func format(_ digits: Int) -> String {
+        return String(format: "%.\(digits)f", self)
     }
 }
