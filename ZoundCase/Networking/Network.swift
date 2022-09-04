@@ -20,6 +20,31 @@
 //  ----------------------------------------------------
 
 import Foundation
+import Combine
+
+// MARK: - Combine Network Service to download crypto numbers JSON data.
+protocol CryptoMarketQuoteProtocolType {
+    func downloadCryptoMarketQuotes() -> AnyPublisher<ExchangeRates, Error>
+}
+
+class CryptoMarketQuoteService: CryptoMarketQuoteProtocolType {
+
+    func downloadCryptoMarketQuotes() -> AnyPublisher<ExchangeRates, Error> {
+        let validAddress = doubleCheckWebAddress(World.cryptoPriceUpdateURL)
+        let url = URL(string: validAddress)!
+        let request = URLRequest(url: url)
+        return URLSession.shared
+            .dataTaskPublisher(for: request)
+            .receive(on: DispatchQueue.main)
+            .catch { error in
+                return Fail(error: error).eraseToAnyPublisher()
+            }.map({
+                $0.data
+            })
+            .decode(type: ExchangeRates.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+    }
+}
 
 // MARK: - Network Service to fetch crypto numbers JSON data.
 class NetworkService {
@@ -58,8 +83,8 @@ class NetworkService {
             #else
             // debugPrintIncomingData(incomingData)
             #endif
-            let rateUpdates = try JSONDecoder().decode(YourType.self, from: incomingData)
-            return rateUpdates
+            let jsonUpdates = try JSONDecoder().decode(YourType.self, from: incomingData)
+            return jsonUpdates
         } catch {
             print(error, terminator: World.jsonErrorDecodingMessage)
             // swiftlint:disable:next force_cast
@@ -69,6 +94,7 @@ class NetworkService {
 }
 
 func doubleCheckWebAddress(_ givenAddress: String) -> String {
+    // In Production this would be actual verification for source address parts.
     guard let liveWebURL = URL(string: givenAddress),
           let validWebURL = URLRequest(url: liveWebURL).url?.absoluteString else {
         return ""
@@ -78,8 +104,8 @@ func doubleCheckWebAddress(_ givenAddress: String) -> String {
 
 // MARK: - Central Bank to fetch money XML data.
 class CentralBankDelegate: NSObject, XMLParserDelegate, ObservableObject {
-    var eurosInExchange: [String: Double] = [:]
-    var wantedCurrencies: Set<String> = ["SEK", "USD", "INR"]
+    @Published var eurosInExchange: [String: Double] = [:]
+    @Published var wantedCurrencies: Set<String> = ["SEK", "USD", "INR"]
 
     // EU Central Bank has XML published every day with money rates.
     func loadCentralBankRates() {

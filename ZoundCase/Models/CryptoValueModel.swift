@@ -1,6 +1,6 @@
 //  ----------------------------------------------------
 //
-//  CurrencyModel.swift
+//  CryptoValueModel.swift
 //  Version 1.0
 //
 //  Unique ID:  4FE40B77-4F60-4E6B-A4F8-90D27B360236
@@ -61,19 +61,3 @@ enum QuoteAsset: String, Codable, CaseIterable {
     case usdt
     case wrx
 }
-
-/*  Example JSON item…
- {
- "symbol":"yggusdt",
- "baseAsset":"ygg",
- "quoteAsset":"usdt",
- "openPrice":"0.5275",
- "lowPrice":"0.5266",
- "highPrice":"0.5308",
- "lastPrice":"0.5266",
- "volume":"148.6",
- "bidPrice":"0.4992",
- "askPrice":"0.5151",
- "at":1661870066000
- }
- */
