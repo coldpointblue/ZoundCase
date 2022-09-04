@@ -16,9 +16,10 @@
 		7210AE5828C1466300140645 /* ZoundCaseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210AE5728C1466300140645 /* ZoundCaseUITestsLaunchTests.swift */; };
 		7210AE6728C14CDF00140645 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210AE6628C14CDF00140645 /* Constants.swift */; };
 		7210AE6A28C14D6600140645 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210AE6928C14D6600140645 /* Network.swift */; };
-		7210AE6D28C14DF000140645 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210AE6C28C14DF000140645 /* CurrencyModel.swift */; };
-		729BFE8428C243E900358E6C /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729BFE8328C243E900358E6C /* Conversion.swift */; };
+		7210AE6D28C14DF000140645 /* CryptoValueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7210AE6C28C14DF000140645 /* CryptoValueModel.swift */; };
 		729BFE8628C25A7E00358E6C /* BuildingBlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */; };
+		72A09B2528C36D7300A8DCDC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A09B2428C36D7300A8DCDC /* DetailView.swift */; };
+		72B06C1A28C46E6B0006E573 /* MarketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72B06C1928C46E6B0006E573 /* MarketViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,9 +53,10 @@
 		7210AE6428C147C700140645 /* README.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 		7210AE6628C14CDF00140645 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7210AE6928C14D6600140645 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		7210AE6C28C14DF000140645 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
-		729BFE8328C243E900358E6C /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
+		7210AE6C28C14DF000140645 /* CryptoValueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoValueModel.swift; sourceTree = "<group>"; };
 		729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingBlocksView.swift; sourceTree = "<group>"; };
+		72A09B2428C36D7300A8DCDC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		72B06C1928C46E6B0006E573 /* MarketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +156,7 @@
 		7210AE6B28C14DCD00140645 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7210AE6C28C14DF000140645 /* CurrencyModel.swift */,
+				7210AE6C28C14DF000140645 /* CryptoValueModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				7210AE3C28C1466200140645 /* ContentView.swift */,
+				72A09B2428C36D7300A8DCDC /* DetailView.swift */,
 				729BFE8528C25A7E00358E6C /* BuildingBlocksView.swift */,
 			);
 			path = UIViews;
@@ -171,7 +174,7 @@
 		729BFE8828C28C4700358E6C /* ViewModelsLogic */ = {
 			isa = PBXGroup;
 			children = (
-				729BFE8328C243E900358E6C /* Conversion.swift */,
+				72B06C1928C46E6B0006E573 /* MarketViewModel.swift */,
 			);
 			path = ViewModelsLogic;
 			sourceTree = "<group>";
@@ -328,10 +331,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7210AE6D28C14DF000140645 /* CurrencyModel.swift in Sources */,
+				7210AE6D28C14DF000140645 /* CryptoValueModel.swift in Sources */,
+				72A09B2528C36D7300A8DCDC /* DetailView.swift in Sources */,
+				72B06C1A28C46E6B0006E573 /* MarketViewModel.swift in Sources */,
 				7210AE3D28C1466200140645 /* ContentView.swift in Sources */,
 				7210AE3B28C1466200140645 /* ZoundCaseApp.swift in Sources */,
-				729BFE8428C243E900358E6C /* Conversion.swift in Sources */,
 				7210AE6A28C14D6600140645 /* Network.swift in Sources */,
 				7210AE6728C14CDF00140645 /* Constants.swift in Sources */,
 				729BFE8628C25A7E00358E6C /* BuildingBlocksView.swift in Sources */,
