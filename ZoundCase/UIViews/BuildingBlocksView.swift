@@ -95,7 +95,7 @@ extension ContentView {
             ForEach(QuoteAsset.allCases, id: \.rawValue) { oneCurrency in
 
                 Section(header: Text(oneCurrency.rawValue)) {
-                    ForEach(jsonData) { (cryptoUpdate: CryptoValue) in
+                    ForEach(wholeMarketViewModel.jsonDataTruthInstance) { (cryptoUpdate: CryptoValue) in
                         if cryptoUpdate.quoteAsset == oneCurrency {
                             HStack {
                                 HStack {
@@ -113,13 +113,14 @@ extension ContentView {
                     }
                     .contentShape(Rectangle())
                     .onTapGesture {
-                        // Show details of tapped selection.
+                        showCryptoDetailView.toggle()
                     }
                 }
 
             }
 
         }
+        .searchable(text: $wholeMarketViewModel.searchQueryTyped, prompt: "Search Cryptocurrency Symbol")
         .listStyle(SidebarListStyle())
     }
 }
