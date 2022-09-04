@@ -152,9 +152,9 @@
 		7210AE6828C14D4B00140645 /* Network Service */ = {
 			isa = PBXGroup;
 			children = (
-				7210AE6928C14D6600140645 /* Network.swift */,
 				72B06C1F28C514700006E573 /* CryptoNetwork.swift */,
 				72B06C1D28C514100006E573 /* CentralBankNetwork.swift */,
+				7210AE6928C14D6600140645 /* Network.swift */,
 			);
 			path = "Network Service";
 			sourceTree = "<group>";

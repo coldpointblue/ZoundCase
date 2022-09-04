@@ -129,11 +129,11 @@ extension ContentView {
 extension ContentView {
     fileprivate func leadingFigures(_ cryptoUpdate: CryptoValue) -> some View {
         return Group {
-            Text(cryptoUpdate.symbol)
-                .font(SwiftUI.Font.headline)
             Text(cryptoUpdate.baseAsset)
                 .multilineTextAlignment(.trailing)
                 .font(SwiftUI.Font.subheadline)
+            Text(cryptoUpdate.symbol)
+                .font(SwiftUI.Font.headline)
         }
         .padding(.horizontal)
     }
