@@ -46,52 +46,53 @@ private func debugPrintStatusCode(_ webResponse: URLResponse) {
 #endif
 
 // MARK: - Network Service to fetch crypto numbers JSON data.
-class NetworkService {
-    // The more sensible way… Quick & easy code during prototyping.
-    @MainActor
-    func fetchSpecificJSON() async throws -> ExchangeRates {
-        let validAddress = doubleCheckWebAddress(World.cryptoPriceUpdateURL)
-        guard validAddress != "" else {
-            return []
-        }
-        var remoteJSON: ExchangeRates
-        do {
-            remoteJSON = try await self.fetchGenericData(validAddress)
-        } catch {
-            throw NSError(domain: World.webDataDownloadErrorMessage, code: 0, userInfo: nil)
-        }
-        return remoteJSON
-    }
-    // Disabled this in favor of Combine auto-load.
-    //    Task {
-    //        wholeMarketViewModel.jsonDataTruthInstance = try await wholeMarketViewModel.network.fetchSpecificJSON()
-    //    } // Load JSON async one way.
-
-    // Generic Fetch Query for Data
-    private func fetchGenericData<YourType: Codable>(_ sourceURLString: String) async throws -> YourType {
-        guard let sourceURL = URL(string: sourceURLString) else {
-            throw NSError(domain: World.sourceURLInvalidErrorMessage, code: 0, userInfo: nil)
-        }
-
-        do {
-            let (incomingData, webResponse) = try await URLSession.shared.data(from: sourceURL)
-            guard let httpResponse = webResponse as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                #if PRODUCTION
-                #else
-                debugPrintStatusCode(webResponse)
-                #endif
-                throw NSError(domain: World.webDataDownloadErrorMessage, code: 0, userInfo: nil)
-            }
-            #if PRODUCTION
-            #else
-            // debugPrintIncomingData(incomingData)
-            #endif
-            let jsonUpdates = try JSONDecoder().decode(YourType.self, from: incomingData)
-            return jsonUpdates
-        } catch {
-            print(error, terminator: World.jsonErrorDecodingMessage)
-            // swiftlint:disable:next force_cast
-            return "" as! YourType
-        }
-    }
-}
+// Note: Decided not to use this but left it here to bring-up in discussion.
+// class NetworkService {
+//    // The more sensible way… Quick & easy code during prototyping.
+//    @MainActor
+//    func fetchSpecificJSON() async throws -> ExchangeRates {
+//        let validAddress = doubleCheckWebAddress(World.cryptoPriceUpdateURL)
+//        guard validAddress != "" else {
+//            return []
+//        }
+//        var remoteJSON: ExchangeRates
+//        do {
+//            remoteJSON = try await self.fetchGenericData(validAddress)
+//        } catch {
+//            throw NSError(domain: World.webDataDownloadErrorMessage, code: 0, userInfo: nil)
+//        }
+//        return remoteJSON
+//    }
+//    // Disabled this in favor of Combine auto-load.
+//    //    Task {
+//    //        wholeMarketViewModel.jsonDataTruthInstance = try await wholeMarketViewModel.network.fetchSpecificJSON()
+//    //    } // Load JSON async one way.
+//
+//    // Generic Fetch Query for Data
+//    private func fetchGenericData<YourType: Codable>(_ sourceURLString: String) async throws -> YourType {
+//        guard let sourceURL = URL(string: sourceURLString) else {
+//            throw NSError(domain: World.sourceURLInvalidErrorMessage, code: 0, userInfo: nil)
+//        }
+//
+//        do {
+//            let (incomingData, webResponse) = try await URLSession.shared.data(from: sourceURL)
+//            guard let httpResponse = webResponse as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+//                #if PRODUCTION
+//                #else
+//                debugPrintStatusCode(webResponse)
+//                #endif
+//                throw NSError(domain: World.webDataDownloadErrorMessage, code: 0, userInfo: nil)
+//            }
+//            #if PRODUCTION
+//            #else
+//            // debugPrintIncomingData(incomingData)
+//            #endif
+//            let jsonUpdates = try JSONDecoder().decode(YourType.self, from: incomingData)
+//            return jsonUpdates
+//        } catch {
+//            print(error, terminator: World.jsonErrorDecodingMessage)
+//            // s wiftlint:disable:next force_cast
+//            return "" as! YourType
+//        }
+//    }
+// }
