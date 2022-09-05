@@ -23,9 +23,11 @@ import SwiftUI
 
 @main
 struct ZoundCaseApp: App {
+    @StateObject var cryptoMarketViewModel = CryptoMarketViewModel()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(cryptoMarketViewModel)
         }
     }
 }

@@ -22,12 +22,11 @@ import SwiftUI
 import Combine
 
 struct ContentView: View {
-    @StateObject var wholeMarketViewModel: CryptoMarketViewModel = CryptoMarketViewModel()
+    @EnvironmentObject var wholeMarketViewModel: CryptoMarketViewModel
 
     @State var timeLine: Double = 0
 
     @State var showCryptoDetailView = false
-    @State private var selectedClient: CryptoValue?  // Tap choice detail.
 
     var body: some View {
         var bindingToTimeLine = $timeLine
@@ -64,6 +63,8 @@ struct ContentView: View {
 }
 
 struct ContentView_Previews: PreviewProvider {
+    @EnvironmentObject var wholeMarketViewModel: CryptoMarketViewModel
+
     static var previews: some View {
         ContentView()
     }

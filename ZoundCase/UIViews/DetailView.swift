@@ -22,7 +22,7 @@ import SwiftUI
 import Combine
 
 struct DetailView: View {
-    @StateObject private var cryptoMktViewModel = CryptoMarketViewModel()
+    @EnvironmentObject var cryptoMktViewModel: CryptoMarketViewModel
 
     var chosenSymbolID: String = ""
     static var favouriteSymbolsSet: Set<String> = []
@@ -49,7 +49,7 @@ struct DetailView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                Text("Volume…\((CryptoValue.exampleCryptoValue.volume))")
+                Text("Volume…\((((cryptoMktViewModel.selectedCurrency?.volume)!)))")
             }
 
             ZStack {
@@ -99,35 +99,35 @@ extension DetailView {
 extension DetailView {
     // Displays the specific numbers for this currency.
     fileprivate func whichCurrency() -> some View {
-        let currency = CryptoValue.exampleCryptoValue
+        let currency = cryptoMktViewModel.selectedCurrency
         return Group {
-            Text("Symbol:  " + currency.symbol
-                    + ("     +\((Double(currency.askPrice)!/Double(currency.openPrice)!).format(2))" + "%")
+            Text("Symbol:  " + (currency?.symbol)!
+                    + ("     +\((Double((currency!.askPrice))!/Double((currency!.openPrice))!).format(2))" + "%")
             )
-            Text("Base Asset  " + currency.baseAsset)
-            Text("Quote Asset  " + currency.quoteAsset.rawValue)
+            Text("Base Asset  " + (cryptoMktViewModel.selectedCurrency!.baseAsset))
+            Text("Quote Asset  " + (cryptoMktViewModel.selectedCurrency!.quoteAsset).rawValue)
         }
     }
 
     fileprivate func comparisonSection() -> some View {
-        let detailInfo = CryptoValue.exampleCryptoValue
+        let detailInfo = cryptoMktViewModel.selectedCurrency
         return HStack {
             VStack {
-                Text("Last  " + detailInfo.lastPrice)
-                Text("High  " + detailInfo.highPrice)
-                Text("Low  " + detailInfo.lowPrice)
+                Text("Last  " + detailInfo!.lastPrice)
+                Text("High  " + detailInfo!.highPrice)
+                Text("Low  " + detailInfo!.lowPrice)
             }
         }
     }
     fileprivate func wantSection() -> some View {
-        let detailInfo = CryptoValue.exampleCryptoValue
+        let detailInfo = cryptoMktViewModel.selectedCurrency
         return HStack {
             Spacer()
             VStack {
                 Group {
-                    Text(detailInfo.openPrice + " Open")
-                    Text(detailInfo.bidPrice + " Bid")
-                    Text(detailInfo.askPrice + " Ask")
+                    Text(detailInfo!.openPrice + " Open")
+                    Text(detailInfo!.bidPrice + " Bid")
+                    Text(detailInfo!.askPrice + " Ask")
                 }
                 .multilineTextAlignment(.leading)
             }
@@ -177,6 +177,8 @@ extension DetailView {
 }
 
 struct DetailView_Previews: PreviewProvider {
+    @EnvironmentObject var cryptoMktViewModel: CryptoMarketViewModel
+
     static var previews: some View {
         DetailView()
     }

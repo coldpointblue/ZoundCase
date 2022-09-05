@@ -25,6 +25,8 @@ import Combine
 class CryptoMarketViewModel: ObservableObject {
     @Published var jsonDataTruthInstance: ExchangeRates = []
 
+    @Published var selectedCurrency: CryptoValue?  // Tap choice detail.
+
     // Services…
     //    @Published var network = NetworkService()
     @Published var centralBankUpdate = CentralBankDelegate()

@@ -110,11 +110,12 @@ extension ContentView {
                                     Spacer()
                                 }
                             }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                wholeMarketViewModel.selectedCurrency = cryptoUpdate
+                                showCryptoDetailView.toggle()
+                            }
                         }
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        showCryptoDetailView.toggle()
                     }
                 }
 
