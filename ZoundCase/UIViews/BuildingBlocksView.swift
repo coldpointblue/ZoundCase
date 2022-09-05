@@ -74,7 +74,7 @@ extension ContentView {
     func tradingPeriodSlider(_ keepEyeOn: inout Binding<Double>) -> some View {
         return Group {
             // swiftlint:disable:next line_length
-            Text("Trading Period is \((keepEyeOn.wrappedValue == 0) ? 0 : -keepEyeOn.wrappedValue, specifier: "%.1f") elapsed time.")
+            Text("Trading Period is \((keepEyeOn.wrappedValue == 0) ? 0 : -keepEyeOn.wrappedValue, specifier: "%.1f") hours elapsed time.")
             HStack {
                 Text("Before")  // Text outside Slider, to keep without shadow for now.
                 Slider(value: keepEyeOn, in: -200 ... 0, step: 0.5) {  } // Use the numbers here later.

@@ -24,7 +24,7 @@ import Combine
 struct DetailView: View {
     @StateObject private var cryptoMktViewModel = CryptoMarketViewModel()
 
-    var chosenIndexSymbol: String = ""
+    var chosenSymbolID: String = ""
     static var favouriteSymbolsSet: Set<String> = []
     @State private var isFavourite = false
 
@@ -32,17 +32,24 @@ struct DetailView: View {
 
     var body: some View {
         VStack {
-
-            HStack {
-                Button {
-                    cryptoMktViewModel.bindJSONData()
-                    inputUpdate.send(.refreshButtonTapped)
-                    // Dismiss from here as well.
-                } label: {
-                    Text("Refresh")
+            VStack {
+                HStack {
+                    refreshButton()
+                    Text("Cryptocurrency Details")
                 }
-                .padding([.vertical])
-                .buttonStyle(.bordered)
+                whichCurrency()
+            }
+            Spacer()
+
+            VStack {
+                HStack {
+                    Spacer()
+                    comparisonSection()
+                    wantSection()
+                    Spacer()
+                }
+                .padding(.horizontal)
+                Text("Volume…\((CryptoValue.exampleCryptoValue.volume))")
             }
 
             ZStack {
@@ -50,11 +57,11 @@ struct DetailView: View {
 
                 VStack {
                     Spacer()
-                    HStack {
-                        Group {
-                            Text("Cryptocurrency Details")
-                        }.multilineTextAlignment(.leading)
-                    }
+                    Group {
+                        Text("Recent Trend")
+                    }.multilineTextAlignment(.leading)
+
+                    trendGraph()
                     Spacer()
                     VStack {
                         Text("Fine print goes here. =P")
@@ -71,11 +78,85 @@ struct DetailView: View {
             Spacer()
         }
         .onAppear {
-            isFavourite = DetailView.favouriteSymbolsSet.contains(chosenIndexSymbol)
+            isFavourite = DetailView.favouriteSymbolsSet.contains(chosenSymbolID)
         }
-        .navigationBarTitle("Client", displayMode: .inline)
+    }
+}
+
+extension DetailView {
+    fileprivate func refreshButton() -> some View {
+        return Button {
+            cryptoMktViewModel.bindJSONData()
+            inputUpdate.send(.refreshButtonTapped)
+        } label: {
+            Text("Refresh")
+        }
+        .padding([.vertical])
+        .buttonStyle(.bordered)
+    }
+}
+
+extension DetailView {
+    // Displays the specific numbers for this currency.
+    fileprivate func whichCurrency() -> some View {
+        let currency = CryptoValue.exampleCryptoValue
+        return Group {
+            Text("Symbol:  " + currency.symbol
+                    + ("     +\((Double(currency.askPrice)!/Double(currency.openPrice)!).format(2))" + "%")
+            )
+            Text("Base Asset  " + currency.baseAsset)
+            Text("Quote Asset  " + currency.quoteAsset.rawValue)
+        }
     }
 
+    fileprivate func comparisonSection() -> some View {
+        let detailInfo = CryptoValue.exampleCryptoValue
+        return HStack {
+            VStack {
+                Text("Last  " + detailInfo.lastPrice)
+                Text("High  " + detailInfo.highPrice)
+                Text("Low  " + detailInfo.lowPrice)
+            }
+        }
+    }
+    fileprivate func wantSection() -> some View {
+        let detailInfo = CryptoValue.exampleCryptoValue
+        return HStack {
+            Spacer()
+            VStack {
+                Group {
+                    Text(detailInfo.openPrice + " Open")
+                    Text(detailInfo.bidPrice + " Bid")
+                    Text(detailInfo.askPrice + " Ask")
+                }
+                .multilineTextAlignment(.leading)
+            }
+        }
+    }
+}
+
+extension DetailView {
+    // Not yet implemented… This is just mock visual.
+    fileprivate func trendGraph() -> some View {
+        let wide = 24.0
+        return ZStack {
+            Rectangle()
+                .fill(.mint)
+                .frame(width: 200, height: 200)
+            HStack {
+                Spacer()
+                Group {
+                    Rectangle()
+                        .frame(width: wide, height: 55)
+                    Rectangle()
+                        .frame(width: wide, height: 22)
+                    Rectangle()
+                        .frame(width: wide, height: 37)
+                }
+                Spacer()
+            }
+        }
+    }
 }
 
 extension DetailView {
@@ -83,9 +164,9 @@ extension DetailView {
         return Button {
             isFavourite.toggle()
             if isFavourite {
-                DetailView.favouriteSymbolsSet.insert(chosenIndexSymbol)
+                DetailView.favouriteSymbolsSet.insert(chosenSymbolID)
             } else {
-                DetailView.favouriteSymbolsSet.remove(chosenIndexSymbol)
+                DetailView.favouriteSymbolsSet.remove(chosenSymbolID)
             }
         } label: {
             Image(systemName: (isFavourite ? "heart.fill" : "heart"))

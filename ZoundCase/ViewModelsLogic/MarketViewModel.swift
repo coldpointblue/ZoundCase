@@ -96,7 +96,6 @@ class CryptoMarketViewModel: ObservableObject {
 
     func bindJSONData() {
         let output = self.transform(inputTrigger: inputUpdateMessage.eraseToAnyPublisher())
-
         output
             .receive(on: DispatchQueue.main)
             .sink { [weak self] event in
