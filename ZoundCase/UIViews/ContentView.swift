@@ -66,6 +66,6 @@ struct ContentView_Previews: PreviewProvider {
     @EnvironmentObject var wholeMarketViewModel: CryptoMarketViewModel
 
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(CryptoMarketViewModel())
     }
 }
