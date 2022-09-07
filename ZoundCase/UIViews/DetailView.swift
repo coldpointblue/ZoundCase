@@ -45,11 +45,13 @@ struct DetailView: View {
                 HStack {
                     Spacer()
                     comparisonSection()
+                    Spacer()
                     wantSection()
                     Spacer()
                 }
+                .font(.system(.callout, design: .monospaced))
                 .padding(.horizontal)
-                Text("Volume…\((((cryptoMktViewModel.selectedCurrency?.volume)!)))")
+                Text("Volume… \(((cryptoMktViewModel.selectedCurrency?.volume)!).inXDigits(0))")
             }
 
             ZStack {
@@ -102,34 +104,43 @@ extension DetailView {
         let currency = cryptoMktViewModel.selectedCurrency
         return Group {
             Text("Symbol:  " + (currency?.symbol)!
-                    + ("     +\((Double((currency!.askPrice))!/Double((currency!.openPrice))!).format(2))" + "%")
+                    + ("     +\((Double((currency!.askPrice))!/Double((currency!.openPrice))!).digitsSeen(2))" + "%")
             )
             Text("Base Asset  " + (cryptoMktViewModel.selectedCurrency!.baseAsset))
             Text("Quote Asset  " + (cryptoMktViewModel.selectedCurrency!.quoteAsset).rawValue)
         }
     }
 
+    fileprivate func numberShown(_ name: String, _ amount: String, _ isNameBefore: Bool = true) -> some View {
+        return isNameBefore ? Text(name + " " + amount.inXDigits(World.fixedDecimals))
+            :  Text(amount.inXDigits(World.fixedDecimals) + " " + name)
+    }
+
     fileprivate func comparisonSection() -> some View {
         let detailInfo = cryptoMktViewModel.selectedCurrency
         return HStack {
             VStack {
-                Text("Last  " + detailInfo!.lastPrice)
-                Text("High  " + detailInfo!.highPrice)
-                Text("Low  " + detailInfo!.lowPrice)
+                Group {
+                    numberShown("Last", detailInfo!.lastPrice)
+                    numberShown("High", detailInfo!.highPrice)
+                    numberShown("Low\u{00a0}", detailInfo!.lowPrice)
+                }
+                .padding(.bottom, 3)
+                .multilineTextAlignment(.leading)
             }
         }
     }
     fileprivate func wantSection() -> some View {
         let detailInfo = cryptoMktViewModel.selectedCurrency
         return HStack {
-            Spacer()
             VStack {
                 Group {
-                    Text(detailInfo!.openPrice + " Open")
-                    Text(detailInfo!.bidPrice + " Bid")
-                    Text(detailInfo!.askPrice + " Ask")
+                    numberShown("Open", detailInfo!.openPrice, false)
+                    numberShown("\u{00a0}Bid", detailInfo!.bidPrice, false)
+                    numberShown("\u{00a0}Ask", detailInfo!.askPrice, false)
                 }
-                .multilineTextAlignment(.leading)
+                .padding(.bottom, 3)
+                .multilineTextAlignment(.trailing)
             }
         }
     }

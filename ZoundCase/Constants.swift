@@ -31,6 +31,8 @@ struct World {
     static let jsonErrorDecodingMessage: String = "\r—————— JSON Decoder ERROR\r"
 
     static let buttonTintAmount = 0.7
+
+    static let fixedDecimals = 7
 }
 
 #if PRODUCTION

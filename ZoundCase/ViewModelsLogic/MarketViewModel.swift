@@ -117,12 +117,25 @@ class CryptoMarketViewModel: ObservableObject {
         // This needs to take into account the volume of the transaction to display?
         let exchange = centralBankUpdate.eurosInExchange
         let liveMoney = isSwedishMoney ? "SEK" : "USD"
-        return ((1 / ((amount) * ((exchange["INR"] ?? 0.0) / (exchange[liveMoney] ?? 0.0)) )).format(7))
+        return ((1 / ((amount) * ((exchange["INR"] ?? 0.0) / (exchange[liveMoney] ?? 0.0)) ))
+                    .digitsSeen(World.fixedDecimals))
+    }
+}
+
+extension String {
+    private func actualDouble() -> Double {
+        Double(self) ?? 0.0
+    }
+    func inXDigits(_ forcedDigits: Int) -> String {
+        self.actualDouble().digitsSeen(forcedDigits)
     }
 }
 
 extension Double {
-    func format(_ digits: Int) -> String {
-        return String(format: "%.\(digits)f", self)
+    func digitsSeen(_ digits: Int) -> String {
+        let  fixedNumberFormatter = NumberFormatter()
+        fixedNumberFormatter.minimumFractionDigits = digits
+        fixedNumberFormatter.maximumFractionDigits = digits
+        return fixedNumberFormatter.string(from: self as NSNumber) ?? "0.00"
     }
 }

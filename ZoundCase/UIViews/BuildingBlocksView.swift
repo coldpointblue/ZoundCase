@@ -99,8 +99,8 @@ extension ContentView {
                     ForEach(wholeMarketViewModel.jsonDataTruthInstance) { (cryptoUpdate: CryptoValue) in
                         if cryptoUpdate.quoteAsset == oneCurrency {
                             HStack {
+                                Text("\u{00a0}\u{00a0}\u{00a0}")
                                 HStack {
-                                    Spacer()
                                     VStack.init(alignment: SwiftUI.HorizontalAlignment.center) {
                                         leadingFigures(cryptoUpdate)
                                     }
@@ -111,6 +111,7 @@ extension ContentView {
                                 }
                             }
                             .contentShape(Rectangle())
+                            .font(.system(.callout, design: .monospaced))
                             .onTapGesture {
                                 wholeMarketViewModel.selectedCurrency = cryptoUpdate
                                 showCryptoDetailView.toggle()
