@@ -117,8 +117,9 @@ class CryptoMarketViewModel: ObservableObject {
         // This needs to take into account the volume of the transaction to display?
         let exchange = centralBankUpdate.eurosInExchange
         let liveMoney = isSwedishMoney ? "SEK" : "USD"
-        return ((1 / ((amount) * ((exchange["INR"] ?? 0.0) / (exchange[liveMoney] ?? 0.0)) ))
-                    .digitsSeen(World.fixedDecimals))
+        let indianRupeeForLiveMoney = ((exchange[liveMoney] ?? 1.0) / (exchange["INR"] ?? 1.0))
+        return (amount * indianRupeeForLiveMoney)
+            .digitsSeen(World.fixedDecimals)
     }
 }
 

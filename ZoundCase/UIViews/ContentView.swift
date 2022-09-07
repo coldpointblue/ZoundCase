@@ -45,6 +45,8 @@ struct ContentView: View {
                 }
             }
             tradingPeriodSlider(&bindingToTimeLine)
+            Divider()
+            moneyLine()
             listEveryCryptoPrice()
                 .listStyle(.plain)
         }

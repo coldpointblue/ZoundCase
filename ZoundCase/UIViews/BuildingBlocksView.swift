@@ -89,6 +89,28 @@ extension ContentView {
     }
 }
 
+// MARK: - Line specifying money being displayed within list.
+extension ContentView {
+    func moneyLine() -> some View {
+        return HStack {
+            Group {
+                HStack {
+                    Text("Trade…")
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
+                HStack {
+                    Spacer()
+                    Text(" …in " +
+                            "\(wholeMarketViewModel.isSwedishMoney ? "SEK" : "USD")"
+                            + ":")
+                }
+                Spacer()
+            }
+            .padding(.bottom, 3)
+        }
+    }
+}
+
 // MARK: - Content list with cryptocurrencies and their numbers.
 extension ContentView {
     func listEveryCryptoPrice() -> some View {
