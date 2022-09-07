@@ -28,7 +28,7 @@ class CryptoMarketViewModel: ObservableObject {
     @Published var selectedCurrency: CryptoValue?  // Tap choice detail.
 
     // Services…
-    //    @Published var network = NetworkService()
+    // Not used but left here for discussion.   @Published var network = NetworkService()
     @Published var centralBankUpdate = CentralBankDelegate()
     @Published var isSwedishMoney: Bool = false
     // NOTE: Cryptocurrencies in JSON are listed with INR (Indian Rupee).

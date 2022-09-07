@@ -177,9 +177,13 @@ extension DetailView {
 }
 
 struct DetailView_Previews: PreviewProvider {
-    @EnvironmentObject var cryptoMktViewModel: CryptoMarketViewModel
+    static var previewMockData: CryptoMarketViewModel {
+        let mockData = CryptoMarketViewModel()
+        mockData.selectedCurrency = CryptoValue.exampleCryptoValue
+        return mockData
+    }
 
     static var previews: some View {
-        DetailView()
+        DetailView().environmentObject(self.previewMockData)
     }
 }
