@@ -113,13 +113,12 @@ class CryptoMarketViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func currentRate(amount: Double) -> String {
+    func moneyRate(amount: String) -> String {
         // This needs to take into account the volume of the transaction to display?
         let exchange = centralBankUpdate.eurosInExchange
         let liveMoney = isSwedishMoney ? "SEK" : "USD"
-        let indianRupeeForLiveMoney = ((exchange[liveMoney] ?? 1.0) / (exchange["INR"] ?? 1.0))
-        return (amount * indianRupeeForLiveMoney)
-            .digitsSeen(World.fixedDecimals)
+        let ratio = Decimal(exchange[liveMoney]!) / Decimal((exchange["INR"]!))
+        return "\((Decimal(string: amount)!) * ratio)".inXDigits(World.fixedDecimals)
     }
 }
 
@@ -137,6 +136,21 @@ extension Double {
         let  fixedNumberFormatter = NumberFormatter()
         fixedNumberFormatter.minimumFractionDigits = digits
         fixedNumberFormatter.maximumFractionDigits = digits
-        return fixedNumberFormatter.string(from: self as NSNumber) ?? "0.00"
+        return fixedNumberFormatter.string(from: self as NSNumber) ?? "_.__"
     }
+}
+
+func precisePercent(_ numerator: String, _ denominator: String) -> String {
+    guard let firstNumber = Decimal(string: numerator),
+          let secondNumber = Decimal(string: denominator) else {
+        return "-.--"
+    }
+    let firstStep = (firstNumber / secondNumber)
+    let secondStep = (firstStep * 100)
+    let lastStep = (secondStep - 100)
+    let symbolFront = lastStep.isSignMinus ? "" : "+"
+    if lastStep.isLess(than: Decimal(0.5)) {
+        return "≈0.00"
+    }
+    return symbolFront + "\(lastStep)".inXDigits(2)
 }

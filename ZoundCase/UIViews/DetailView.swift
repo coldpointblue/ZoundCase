@@ -105,7 +105,8 @@ extension DetailView {
         let currency = cryptoMktViewModel.selectedCurrency
         return Group {
             Text("Symbol:  " + (currency?.symbol)!
-                    + ("     +\((Double((currency!.askPrice))!/Double((currency!.openPrice))!).digitsSeen(2))" + "%")
+                    + ("    \(precisePercent((currency!.askPrice), currency!.openPrice))"
+                        + "%")
             )
             Text("Base Asset  " + (cryptoMktViewModel.selectedCurrency!.baseAsset))
             Text("Quote Asset  " + (cryptoMktViewModel.selectedCurrency!.quoteAsset).rawValue)
@@ -113,7 +114,7 @@ extension DetailView {
     }
 
     fileprivate func numberShown(_ name: String, _ amount: String, _ isNameBefore: Bool = true) -> some View {
-        let convertedMoney: String = cryptoMktViewModel.currentRate(amount: amount.actualDouble())
+        let convertedMoney: String = cryptoMktViewModel.moneyRate(amount: amount)
             .inXDigits(World.fixedDecimals)
         return isNameBefore ? Text(name + " " + convertedMoney)
             :  Text(convertedMoney + " " + name)
@@ -133,6 +134,7 @@ extension DetailView {
             }
         }
     }
+
     fileprivate func wantSection() -> some View {
         let detailInfo = cryptoMktViewModel.selectedCurrency
         return HStack {

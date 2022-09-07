@@ -164,8 +164,12 @@ extension ContentView {
     }
 
     fileprivate func trendDirection(_ cryptoUpdate: CryptoValue) -> some View {
-        let whichWay = (cryptoUpdate.lastPrice >= cryptoUpdate.openPrice)
-        let perhapsIcon = (cryptoUpdate.lastPrice == cryptoUpdate.openPrice
+        let openPrice = cryptoUpdate.openPrice
+        let lastPrice = cryptoUpdate.lastPrice
+
+        let whichWay = !precisePercent(lastPrice, openPrice).hasPrefix("-")
+        let perhapsIcon = (Decimal(string: cryptoUpdate.lastPrice)!
+                            .isEqual(to: Decimal(string: cryptoUpdate.openPrice)!)
                             ? "timelapse" : "arrowtriangle.up.fill")
         return Group {
             Image(systemName: whichWay ?
@@ -174,8 +178,8 @@ extension ContentView {
                 .frame(height: .none)
             VStack {
                 Group {
-                    Text(String((wholeMarketViewModel.currentRate(amount: Double(cryptoUpdate.lastPrice) ?? 0))))
-                    Text(String((wholeMarketViewModel.currentRate(amount: Double(cryptoUpdate.openPrice) ?? 0))))
+                    Text(wholeMarketViewModel.moneyRate(amount: cryptoUpdate.lastPrice))
+                    Text(wholeMarketViewModel.moneyRate(amount: cryptoUpdate.openPrice))
                         .font(SwiftUI.Font.footnote)
                         .foregroundColor(.blue)
                 }
