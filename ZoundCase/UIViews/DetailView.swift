@@ -40,7 +40,8 @@ struct DetailView: View {
                 whichCurrency()
             }
             Spacer()
-
+            Text(cryptoMktViewModel.isSwedishMoney ? "in SEK" : "in USD")
+                .padding(.bottom, 0)
             VStack {
                 HStack {
                     Spacer()
@@ -112,8 +113,10 @@ extension DetailView {
     }
 
     fileprivate func numberShown(_ name: String, _ amount: String, _ isNameBefore: Bool = true) -> some View {
-        return isNameBefore ? Text(name + " " + amount.inXDigits(World.fixedDecimals))
-            :  Text(amount.inXDigits(World.fixedDecimals) + " " + name)
+        let convertedMoney: String = cryptoMktViewModel.currentRate(amount: amount.actualDouble())
+            .inXDigits(World.fixedDecimals)
+        return isNameBefore ? Text(name + " " + convertedMoney)
+            :  Text(convertedMoney + " " + name)
     }
 
     fileprivate func comparisonSection() -> some View {

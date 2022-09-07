@@ -123,7 +123,7 @@ class CryptoMarketViewModel: ObservableObject {
 }
 
 extension String {
-    private func actualDouble() -> Double {
+    func actualDouble() -> Double {
         Double(self) ?? 0.0
     }
     func inXDigits(_ forcedDigits: Int) -> String {
