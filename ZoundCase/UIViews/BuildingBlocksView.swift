@@ -166,7 +166,7 @@ extension ContentView {
     fileprivate func trendDirection(_ cryptoUpdate: CryptoValue) -> some View {
         let whichWay = (cryptoUpdate.lastPrice >= cryptoUpdate.openPrice)
         let perhapsIcon = (cryptoUpdate.lastPrice == cryptoUpdate.openPrice
-                            ? "timelapse" : "chart.line.uptrend.xyaxis.circle")
+                            ? "timelapse" : "arrowtriangle.up.fill")
         return Group {
             Image(systemName: whichWay ?
                     perhapsIcon : "arrow.down.forward")
