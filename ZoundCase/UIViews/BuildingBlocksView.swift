@@ -164,17 +164,15 @@ extension ContentView {
     }
 
     fileprivate func trendDirection(_ cryptoUpdate: CryptoValue) -> some View {
-        let openPrice = cryptoUpdate.openPrice
-        let lastPrice = cryptoUpdate.lastPrice
-
-        let whichWay = !precisePercent(lastPrice, openPrice).hasPrefix("-")
-        let perhapsIcon = (Decimal(string: cryptoUpdate.lastPrice)!
-                            .isEqual(to: Decimal(string: cryptoUpdate.openPrice)!)
-                            ? "timelapse" : "arrowtriangle.up.fill")
+        let openPrice = Decimal(string: cryptoUpdate.openPrice)!
+        let lastPrice = Decimal(string: cryptoUpdate.lastPrice)!
+        let isLessThanZero = (lastPrice - openPrice).isLess(than: 0)
+        let perhapsIcon =  (lastPrice.isEqual(to: openPrice)
+                                ? "timelapse" : "arrowtriangle.up.fill")
         return Group {
-            Image(systemName: whichWay ?
-                    perhapsIcon : "arrow.down.forward")
-                .foregroundColor(whichWay ? .red : .blue)
+            Image(systemName: isLessThanZero ?
+                    "arrow.down.forward" : perhapsIcon)
+                .foregroundColor(isLessThanZero ? .blue : .red)
                 .frame(height: .none)
             VStack {
                 Group {

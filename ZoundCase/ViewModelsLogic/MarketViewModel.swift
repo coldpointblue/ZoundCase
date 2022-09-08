@@ -149,7 +149,7 @@ func precisePercent(_ numerator: String, _ denominator: String) -> String {
     let secondStep = (firstStep * 100)
     let lastStep = (secondStep - 100)
     let symbolFront = lastStep.isSignMinus ? "" : "+"
-    if lastStep.isLess(than: Decimal(0.5)) {
+    if lastStep.distance(to: 0).isLess(than: Decimal(0.005)) {
         return "≈0.00"
     }
     return symbolFront + "\(lastStep)".inXDigits(2)
