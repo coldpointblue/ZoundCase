@@ -140,17 +140,23 @@ extension Double {
     }
 }
 
+extension Decimal {
+    var wholePart: Self {
+        var result = Decimal()
+        var mutableSelf = self
+        NSDecimalRound(&result, &mutableSelf, 0, self >= 0 ? .down : .up)
+        return result
+    }
+}
+
 func precisePercent(_ numerator: String, _ denominator: String) -> String {
     guard let firstNumber = Decimal(string: numerator),
           let secondNumber = Decimal(string: denominator) else {
         return "-.--"
     }
-    let firstStep = (firstNumber / secondNumber)
-    let secondStep = (firstStep * 100)
-    let lastStep = (secondStep - 100)
-    let symbolFront = lastStep.isSignMinus ? "" : "+"
-    if lastStep.distance(to: 0).isLess(than: Decimal(0.005)) {
-        return "≈0.00"
-    }
-    return symbolFront + "\(lastStep)".inXDigits(2)
+    let decimalPlaces = Decimal(sign: .plus, exponent: World.fixedDecimals, significand: Decimal(10))
+    let calculation = (((decimalPlaces * firstNumber)/(secondNumber * decimalPlaces)) * 100) - 100
+    let result = ((calculation * 100).wholePart) / 100
+    let symbolFront = result.isSignMinus ? "" : "+"
+    return symbolFront + "\(result)"
 }
