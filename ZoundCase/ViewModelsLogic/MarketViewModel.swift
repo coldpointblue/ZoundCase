@@ -113,25 +113,24 @@ class CryptoMarketViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    func moneyRate(amount: String) -> String {
-        // This needs to take into account the volume of the transaction to display?
+    func moneyTradeRate(amount: String) -> String {
+        // This needs to take into account the volume of the transaction to display? Cost per trade?
         let exchange = centralBankUpdate.eurosInExchange
         let liveMoney = isSwedishMoney ? "SEK" : "USD"
-        let ratio = Decimal(exchange[liveMoney]!) / Decimal((exchange["INR"]!))
-        return "\((Decimal(string: amount)!) * ratio)".inXDigits(World.fixedDecimals)
+        let ratio = preciseRatio("\(exchange[liveMoney] ?? 0.0)", "\(exchange["INR"] ?? 0.0)")
+        let mathDone = (Decimal(string: amount) ?? Decimal(0.0)) * ratio
+        let result = (((mathDone * decimalPlaces()).wholePart) / decimalPlaces())
+        return result.digitsSeen(World.fixedDecimals)
     }
 }
 
 extension String {
-    func actualDouble() -> Double {
-        Double(self) ?? 0.0
-    }
     func inXDigits(_ forcedDigits: Int) -> String {
-        self.actualDouble().digitsSeen(forcedDigits)
+        (Decimal(string: self) ?? Decimal(0.0)).digitsSeen(forcedDigits)
     }
 }
 
-extension Double {
+extension Decimal {
     func digitsSeen(_ digits: Int) -> String {
         let  fixedNumberFormatter = NumberFormatter()
         fixedNumberFormatter.minimumFractionDigits = digits
@@ -156,12 +155,16 @@ func precisePercent(_ numerator: String, _ denominator: String) -> String {
     return symbolFront + "\(result)"
 }
 
+func decimalPlaces() -> Decimal {
+    return Decimal(sign: .plus, exponent: World.fixedDecimals, significand: Decimal(10))
+}
+
 func preciseRatio(_ numerator: String, _ denominator: String) -> Decimal {
     guard let firstNumber = Decimal(string: numerator),
           let secondNumber = Decimal(string: denominator) else {
         return Decimal(0)
     }
-    let decimalPlaces = Decimal(sign: .plus, exponent: World.fixedDecimals, significand: Decimal(10))
+    let decimalPlaces = decimalPlaces()
     let calculation = ((decimalPlaces * firstNumber) / (secondNumber * decimalPlaces))
     return ((calculation * decimalPlaces).wholePart) / decimalPlaces
 }

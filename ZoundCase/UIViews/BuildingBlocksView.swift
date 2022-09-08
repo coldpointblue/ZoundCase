@@ -177,8 +177,8 @@ extension ContentView {
                 .frame(height: .none)
             VStack {
                 Group {
-                    Text(wholeMarketViewModel.moneyRate(amount: cryptoUpdate.lastPrice))
-                    Text(wholeMarketViewModel.moneyRate(amount: cryptoUpdate.openPrice))
+                    Text(wholeMarketViewModel.moneyTradeRate(amount: cryptoUpdate.lastPrice))
+                    Text(wholeMarketViewModel.moneyTradeRate(amount: cryptoUpdate.openPrice))
                         .font(SwiftUI.Font.footnote)
                         .foregroundColor(.blue)
                 }

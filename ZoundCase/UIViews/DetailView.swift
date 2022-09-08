@@ -114,7 +114,7 @@ extension DetailView {
     }
 
     fileprivate func numberShown(_ name: String, _ amount: String, _ isNameBefore: Bool = true) -> some View {
-        let convertedMoney: String = cryptoMktViewModel.moneyRate(amount: amount)
+        let convertedMoney: String = cryptoMktViewModel.moneyTradeRate(amount: amount)
             .inXDigits(World.fixedDecimals)
         return isNameBefore ? Text(name + " " + convertedMoney)
             :  Text(convertedMoney + " " + name)
