@@ -125,8 +125,12 @@ class CryptoMarketViewModel: ObservableObject {
 }
 
 extension String {
-    func inXDigits(_ forcedDigits: Int) -> String {
-        (Decimal(string: self) ?? Decimal(0.0)).digitsSeen(forcedDigits)
+    func keepXDigits(_ forcedDigits: Int) -> String {
+        let digitsKept = (Decimal(string: self) ?? Decimal(0.0)).digitsSeen(forcedDigits)
+        if self.hasPrefix("+") {
+            return "+" + digitsKept
+        }
+        return digitsKept
     }
 }
 

@@ -52,7 +52,7 @@ struct DetailView: View {
                 }
                 .font(.system(.callout, design: .monospaced))
                 .padding(.horizontal)
-                Text("Volume… \(((cryptoMktViewModel.selectedCurrency?.volume)!).inXDigits(0))")
+                Text("Volume… \(((cryptoMktViewModel.selectedCurrency?.volume) ?? "0").keepXDigits(0))")
             }
 
             ZStack {
@@ -104,10 +104,9 @@ extension DetailView {
     fileprivate func whichCurrency() -> some View {
         let currency = cryptoMktViewModel.selectedCurrency
         return Group {
-            Text("Symbol:  " + (currency?.symbol)!
-                    + ("    \(precisePercent((currency!.askPrice), currency!.openPrice))"
-                        + "%")
-            )
+            Text("Symbol:  \(currency?.symbol ?? "????")    "
+                    + "\(precisePercent((currency?.askPrice ?? "0.0"), (currency?.openPrice ?? "0.0")))"
+                    .keepXDigits(2) + "%")
             Text("Base Asset  " + (cryptoMktViewModel.selectedCurrency!.baseAsset))
             Text("Quote Asset  " + (cryptoMktViewModel.selectedCurrency!.quoteAsset).rawValue)
         }
@@ -115,7 +114,7 @@ extension DetailView {
 
     fileprivate func numberShown(_ name: String, _ amount: String, _ isNameBefore: Bool = true) -> some View {
         let convertedMoney: String = cryptoMktViewModel.moneyTradeRate(amount: amount)
-            .inXDigits(World.fixedDecimals)
+            .keepXDigits(World.fixedDecimals)
         return isNameBefore ? Text(name + " " + convertedMoney)
             :  Text(convertedMoney + " " + name)
     }
