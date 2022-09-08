@@ -164,10 +164,11 @@ extension ContentView {
     }
 
     fileprivate func trendDirection(_ cryptoUpdate: CryptoValue) -> some View {
-        let openPrice = Decimal(string: cryptoUpdate.openPrice)!
-        let lastPrice = Decimal(string: cryptoUpdate.lastPrice)!
-        let isLessThanZero = (lastPrice - openPrice).isLess(than: 0)
-        let perhapsIcon =  (lastPrice.isEqual(to: openPrice)
+        let askPrice = cryptoUpdate.askPrice
+        let openPrice = cryptoUpdate.openPrice
+        let closeToZero = preciseRatio(askPrice, openPrice).distance(to: 0).isLess(than: Decimal(0.00000005))
+        let isLessThanZero = precisePercent(askPrice, openPrice).hasPrefix("-")
+        let perhapsIcon =  (closeToZero
                                 ? "timelapse" : "arrowtriangle.up.fill")
         return Group {
             Image(systemName: isLessThanZero ?

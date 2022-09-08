@@ -150,13 +150,18 @@ extension Decimal {
 }
 
 func precisePercent(_ numerator: String, _ denominator: String) -> String {
-    guard let firstNumber = Decimal(string: numerator),
-          let secondNumber = Decimal(string: denominator) else {
-        return "-.--"
-    }
-    let decimalPlaces = Decimal(sign: .plus, exponent: World.fixedDecimals, significand: Decimal(10))
-    let calculation = (((decimalPlaces * firstNumber)/(secondNumber * decimalPlaces)) * 100) - 100
+    let calculation = (preciseRatio(numerator, denominator) * 100) - 100
     let result = ((calculation * 100).wholePart) / 100
     let symbolFront = result.isSignMinus ? "" : "+"
     return symbolFront + "\(result)"
+}
+
+func preciseRatio(_ numerator: String, _ denominator: String) -> Decimal {
+    guard let firstNumber = Decimal(string: numerator),
+          let secondNumber = Decimal(string: denominator) else {
+        return Decimal(0)
+    }
+    let decimalPlaces = Decimal(sign: .plus, exponent: World.fixedDecimals, significand: Decimal(10))
+    let calculation = ((decimalPlaces * firstNumber) / (secondNumber * decimalPlaces))
+    return ((calculation * decimalPlaces).wholePart) / decimalPlaces
 }
